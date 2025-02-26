@@ -1,0 +1,12 @@
+platform :ios, '15.0'
+
+target 'Nidaa' do
+  use_frameworks!
+
+  # WebRTC pod
+  pod 'GoogleWebRTC'
+  
+  # Other pods you might need
+  pod 'SwiftUI'
+  pod 'AVKit'
+end 

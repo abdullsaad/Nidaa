@@ -6,6 +6,13 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		822D49852D6422EB00B24063 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 822D49842D6422EB00B24063 /* AVFoundation.framework */; };
+		822D49872D6422FA00B24063 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 822D49862D6422FA00B24063 /* AudioToolbox.framework */; };
+		822D49892D64230800B24063 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 822D49882D64230800B24063 /* CoreMedia.framework */; };
+		822D498B2D64231400B24063 /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 822D498A2D64231300B24063 /* CoreAudio.framework */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		8217ED3B2D5EA84C00E5D94E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,11 +34,28 @@
 		8217ED282D5EA84900E5D94E /* Nidaa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nidaa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8217ED3A2D5EA84C00E5D94E /* NidaaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NidaaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8217ED442D5EA84C00E5D94E /* NidaaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NidaaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		822D49842D6422EB00B24063 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		822D49862D6422FA00B24063 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		822D49882D64230800B24063 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		822D498A2D64231300B24063 /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		8242F6E82D6E0E5F00E30A90 /* Exceptions for "Nidaa" folder in "Nidaa" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				CCCApp/Views/Team/ChatBubbleView.swift,
+			);
+			target = 8217ED272D5EA84900E5D94E /* Nidaa */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		8217ED2A2D5EA84900E5D94E /* Nidaa */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				8242F6E82D6E0E5F00E30A90 /* Exceptions for "Nidaa" folder in "Nidaa" target */,
+			);
 			path = Nidaa;
 			sourceTree = "<group>";
 		};
@@ -52,6 +76,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				822D49892D64230800B24063 /* CoreMedia.framework in Frameworks */,
+				822D49852D6422EB00B24063 /* AVFoundation.framework in Frameworks */,
+				822D498B2D64231400B24063 /* CoreAudio.framework in Frameworks */,
+				822D49872D6422FA00B24063 /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +106,7 @@
 				8217ED2A2D5EA84900E5D94E /* Nidaa */,
 				8217ED3D2D5EA84C00E5D94E /* NidaaTests */,
 				8217ED472D5EA84C00E5D94E /* NidaaUITests */,
+				82C81A702D601C9600AB3725 /* Frameworks */,
 				8217ED292D5EA84900E5D94E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -90,6 +119,17 @@
 				8217ED442D5EA84C00E5D94E /* NidaaUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		82C81A702D601C9600AB3725 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				822D498A2D64231300B24063 /* CoreAudio.framework */,
+				822D49882D64230800B24063 /* CoreMedia.framework */,
+				822D49862D6422FA00B24063 /* AudioToolbox.framework */,
+				822D49842D6422EB00B24063 /* AVFoundation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -195,6 +235,8 @@
 			);
 			mainGroup = 8217ED1F2D5EA84900E5D94E;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 8217ED292D5EA84900E5D94E /* Products */;
 			projectDirPath = "";
@@ -412,6 +454,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Orood.orood.Nidaa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_TYPE_CHECKING_TIME = 5000;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -441,6 +484,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Orood.orood.Nidaa;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_TYPE_CHECKING_TIME = 5000;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
