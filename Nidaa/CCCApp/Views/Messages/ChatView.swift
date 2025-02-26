@@ -12,7 +12,9 @@ struct ChatView: View {
     private let authManager = AuthenticationManager.shared
     
     @State private var messageText = ""
-    @State private var showingImagePicker = false
+    @State private var showingAttachmentOptions = false
+    @State private var showingCamera = false
+    @State private var photoSelection: PhotosPickerItem? = nil
     @State private var attachments: [Attachment] = []
     
     @Query(sort: \Message.timestamp, order: .forward) private var messages: [Message]
@@ -51,8 +53,8 @@ struct ChatView: View {
                 text: $messageText,
                 attachments: $attachments,
                 onSend: sendMessage,
-                onAttach: { showingImagePicker = true },
-                onCamera: handleCamera
+                onAttach: { showingAttachmentOptions = true },
+                onCamera: { showingCamera = true }
             )
         }
         .navigationBarTitleDisplayMode(.inline)
@@ -65,28 +67,27 @@ struct ChatView: View {
                 )
             }
         }
-        .onAppear {
-            markMessagesAsRead()
+        .photosPicker(
+            isPresented: $showingAttachmentOptions,
+            selection: $photoSelection,
+            matching: .images
+        )
+        .onChange(of: photoSelection) { _, newItem in
+            if let newItem {
+                handleImageSelection(newItem)
+            }
         }
-        .sheet(isPresented: $showingImagePicker) {
-            PhotosPicker(selection: $selectedItem,
-                        matching: .images) {
-                Text("Select Photo")
-            }
-            .onChange(of: selectedItem) { oldValue, newValue in
-                handleImageSelection(newValue)
-            }
+        .sheet(isPresented: $showingCamera) {
+            ImagePicker(image: $selectedImage, sourceType: .camera)
         }
         .fullScreenCover(item: $activeCall) { call in
             ActiveCallView(call: call)
         }
     }
     
-    @State private var selectedItem: PhotosPickerItem?
+    @State private var selectedImage: UIImage? = nil
     
-    private func handleImageSelection(_ item: PhotosPickerItem?) {
-        guard let item = item else { return }
-        
+    private func handleImageSelection(_ item: PhotosPickerItem) {
         Task {
             if let data = try? await item.loadTransferable(type: Data.self),
                let image = UIImage(data: data) {
@@ -97,22 +98,19 @@ struct ChatView: View {
                 try? data.write(to: imageURL)
                 
                 let attachment = Attachment(
-                    id: UUID(),
                     type: .image,
                     url: imageURL,
                     name: "Image \(Date())",
                     size: Int64(data.count),
                     mimeType: "image/jpeg"
                 )
+                
                 await MainActor.run {
                     attachments.append(attachment)
+                    photoSelection = nil // Clear selection
                 }
             }
         }
-    }
-    
-    private func handleCamera() {
-        // TODO: Implement camera handling
     }
     
     private func sendMessage() {
